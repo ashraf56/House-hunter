@@ -25,7 +25,9 @@ const Login = () => {
                     alert(users.message)
                 }
                 else {
-                    console.log(users);
+                   
+                   
+                    localStorage.setItem("token",users.token)
                     navigate('/')
                 }
             })
@@ -43,18 +45,7 @@ const Login = () => {
                                 <h1 className="text-xl font-bold">Register now!</h1>
 
                             </div>
-                            <div className="form-control" >
-                                <label className="label">
-                                    <span className="label-text">Name</span>
-                                </label>
-                                <input type="text" {...register("name")} placeholder="Name" className="input input-bordered" required />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Numbar</span>
-                                </label>
-                                <input type="number" {...register("number")} placeholder="number" className="input input-bordered" required maxLength={11} />
-                            </div>
+                            
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
