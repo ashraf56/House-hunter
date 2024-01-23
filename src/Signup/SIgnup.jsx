@@ -68,18 +68,9 @@ const SIgnup = () => {
                                 <input type="password" placeholder="password" className="input input-bordered" {...register("password")} required />
 
                             </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Role</span>
-                                </label>
-                                <select className="select select-bordered w-full " {...register("role")}>
-                                    <option disabled >W</option>
-                                    <option value='House Renter'>House Renter</option>
-                                    <option value='House Owner '>House Owner </option>
-                                </select>
-                            </div>
+                            
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Login</button>
+                                <button className="btn btn-primary">Signup</button>
                             </div>
                         </form>
                     </div>
