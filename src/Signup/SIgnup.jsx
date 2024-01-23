@@ -4,33 +4,33 @@ import { useNavigate } from 'react-router-dom';
 
 const SIgnup = () => {
 
-    const { register, handleSubmit,reset } = useForm()
+    const { register, handleSubmit, reset } = useForm()
     let navigate = useNavigate()
-    const onSubmit = (data) => { 
+    const onSubmit = (data) => {
 
-    console.log(data);
-fetch('http://localhost:3000/users',
-{
-    method: "POST"
-    , headers: {
-      'content-type': 'application/json'
-    },
-    body:JSON.stringify(data)
+        console.log(data);
+        fetch('http://localhost:3000/users',
+            {
+                method: "POST"
+                , headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(data)
 
-}
-).then(res => res.json())
-.then(users => {
-    console.log(users);
-    if (users.message  === 'already exist') {
-        alert('already exist')
+            }
+        ).then(res => res.json())
+            .then(users => {
+                console.log(users);
+                if (users.message === 'already exist') {
+                    alert('already exist')
+                }
+                if (users.insertedId) {
+                    alert('user reg success')
+                    navigate('/')
+                }
+            })
+        reset()
     }
-    if (users.insertedId) {
-        alert('user reg success')
-        navigate('/')
-    }
-})
-reset()
-     }
 
     return (
         <div className='mx-auto justify-center items-center container'>
@@ -53,7 +53,7 @@ reset()
                                 <label className="label">
                                     <span className="label-text">Numbar</span>
                                 </label>
-                                <input type="number" {...register("number")} placeholder="number" className="input input-bordered" required maxLength={11}  />
+                                <input type="number" {...register("number")} placeholder="number" className="input input-bordered" required maxLength={11} />
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -66,7 +66,7 @@ reset()
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input type="password" placeholder="password" className="input input-bordered" {...register("password")} required />
-                                
+
                             </div>
                             <div className="form-control">
                                 <label className="label">
