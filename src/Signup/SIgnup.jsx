@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SIgnup = () => {
 
@@ -26,7 +26,7 @@ const SIgnup = () => {
                 }
                 if (users.insertedId) {
                     alert('user reg success')
-                    navigate('/')
+                    navigate('/login')
                 }
             })
         reset()
@@ -71,6 +71,11 @@ const SIgnup = () => {
                             
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Signup</button>
+                            </div>
+                            <div>
+                                <p>
+                                    <Link to={'/login'}>Go to log in</Link>
+                                </p>
                             </div>
                         </form>
                     </div>

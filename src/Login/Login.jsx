@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const { register, handleSubmit, reset } = useForm()
@@ -9,17 +9,25 @@ const Login = () => {
     const onSubmit = async(data) => {
 
         console.log(data);
-      try {
-        
-const response = await axios.post('http://localhost:3000/loggeduser', data)
-const housetoken = response.data.token
-console.log(housetoken);
-  alert('Login successful')
+      fetch('http://localhost:3000/loggeduser', {
+        method: "POST"
+        , headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
 
-  localStorage.setItem('house-token', housetoken)
-      } catch (error) {
-        console.log(error);
-      }
+    }).then(res => res.json())
+    .then( users => {
+        let token= users.token
+        if (users.message === 'user not valid') {
+            return alert('already ')
+        }
+        else{
+            alert('success')
+            localStorage.setItem('house-token',token)
+            navigate('/')
+        }
+    })
         
     }
 
@@ -52,7 +60,13 @@ console.log(housetoken);
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Log In</button>
                             </div>
+                            <div>
+                                <p>
+                                    <Link to={'/signup'}>Create account</Link>
+                                </p>
+                            </div>
                         </form>
+
                     </div>
                 </div>
             </div>
