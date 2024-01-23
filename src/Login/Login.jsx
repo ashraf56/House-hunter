@@ -1,4 +1,6 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const { register, handleSubmit, reset } = useForm()
@@ -6,11 +8,12 @@ const Login = () => {
     const onSubmit = (data) => {
 
         console.log(data);
-        fetch('http://localhost:3000/users',
+        fetch('http://localhost:3000/loggeduser',
             {
                 method: "POST"
                 , headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+
                 },
                 body: JSON.stringify(data)
 
@@ -18,11 +21,11 @@ const Login = () => {
         ).then(res => res.json())
             .then(users => {
                 console.log(users);
-                if (users.message === 'already exist') {
-                    alert('already exist')
+                if (users.message === 'Error logging in' || users.message === 'Password not valid') {
+                    alert(users.message)
                 }
-                if (users.insertedId) {
-                    alert('user reg success')
+                else {
+                    console.log(users);
                     navigate('/')
                 }
             })
