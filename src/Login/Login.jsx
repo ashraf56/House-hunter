@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -5,33 +6,21 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
     const { register, handleSubmit, reset } = useForm()
     let navigate = useNavigate()
-    const onSubmit = (data) => {
+    const onSubmit = async(data) => {
 
         console.log(data);
-        fetch('http://localhost:3000/loggeduser',
-            {
-                method: "POST"
-                , headers: {
-                    'content-type': 'application/json',
+      try {
+        
+const response = await axios.post('http://localhost:3000/loggeduser', data)
+const housetoken = response.data.token
+console.log(housetoken);
+  alert('Login successful')
 
-                },
-                body: JSON.stringify(data)
-
-            }
-        ).then(res => res.json())
-            .then(users => {
-                console.log(users);
-                if (users.message === 'Error logging in' || users.message === 'Password not valid') {
-                    alert(users.message)
-                }
-                else {
-                   
-                   
-                    localStorage.setItem("token",users.token)
-                    navigate('/')
-                }
-            })
-        reset()
+  localStorage.setItem('house-token', housetoken)
+      } catch (error) {
+        console.log(error);
+      }
+        
     }
 
     return (
