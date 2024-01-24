@@ -41,7 +41,7 @@ const Login = () => {
 
                         <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
                             <div className=''>
-                                <h1 className="text-xl font-bold">Register now!</h1>
+                                <h1 className="text-xl font-bold">Log in now!</h1>
 
                             </div>
 
