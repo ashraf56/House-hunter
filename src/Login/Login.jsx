@@ -21,8 +21,8 @@ const Login = () => {
                 console.log(users);
                 let token = users.token
                 let email = users.email
-                if (users.message === 'user not valid') {
-                    return alert('already ')
+                if (users.message === 'user not valid' ||users.message ===  'Password not valid') {
+                    return alert('log in not success ')
                 }
                 else {
                     alert('success')
