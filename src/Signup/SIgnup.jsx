@@ -4,12 +4,12 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const SIgnup = () => {
 
-    const { register, handleSubmit, reset } = useForm()
+    const { register, handleSubmit,formState: { errors }, reset } = useForm()
     let navigate = useNavigate()
     const onSubmit = (data) => {
 
         console.log(data);
-        fetch('http://localhost:3000/users',
+        fetch('https://house-hunter-server-lyart.vercel.app/users',
             {
                 method: "POST"
                 , headers: {
@@ -47,7 +47,7 @@ const SIgnup = () => {
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input type="text" {...register("name")} placeholder="Name" className="input input-bordered" required />
+                                <input type="text" {...register("name",{required:'name is required'})} placeholder="Name" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -84,6 +84,13 @@ const SIgnup = () => {
                             <div>
                                 <p>
                                     <Link to={'/login'}>Go to log in</Link>
+                                </p>
+                            </div>
+                            <div>
+                                <p>
+                                    {
+                                       errors.name && <span className='text-red-700 text-sm' >{errors.name?.message}</span>
+                                    }
                                 </p>
                             </div>
                         </form>

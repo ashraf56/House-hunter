@@ -11,7 +11,7 @@ const getOwner = () => {
     queryKey: ['isOwner', user],
     enabled: !!user && !!localStorage.getItem("house-token"),
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:3000/alluser/owner/${user}`)
+      const res = await axios.get(`https://house-hunter-server-lyart.vercel.app/alluser/owner/${user}`)
 
       console.log(res.data.role);
       return res.data.role;

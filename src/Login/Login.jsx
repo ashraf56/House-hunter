@@ -6,31 +6,31 @@ import { Link, useNavigate } from 'react-router-dom';
 const Login = () => {
     const { register, handleSubmit, reset } = useForm()
     let navigate = useNavigate()
-    const onSubmit = async(data) => {
+    const onSubmit = async (data) => {
 
         console.log(data);
-      fetch('http://localhost:3000/loggeduser', {
-        method: "POST"
-        , headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(data)
+        fetch('https://house-hunter-server-lyart.vercel.app/loggeduser', {
+            method: "POST"
+            , headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
 
-    }).then(res => res.json())
-    .then( users => {
-        console.log(users);
-        let token= users.token
-        let email=users.email
-        if (users.message === 'user not valid') {
-            return alert('already ')
-        }
-        else{
-            alert('success')
-            localStorage.setItem('house-token',JSON.stringify({ email, token }))
-            navigate('/')
-        }
-    })
-        
+        }).then(res => res.json())
+            .then(users => {
+                console.log(users);
+                let token = users.token
+                let email = users.email
+                if (users.message === 'user not valid') {
+                    return alert('already ')
+                }
+                else {
+                    alert('success')
+                    localStorage.setItem('house-token', JSON.stringify({ email, token }))
+                    navigate('/')
+                }
+            })
+
     }
 
     return (
@@ -44,7 +44,7 @@ const Login = () => {
                                 <h1 className="text-xl font-bold">Register now!</h1>
 
                             </div>
-                            
+
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
@@ -58,7 +58,7 @@ const Login = () => {
                                 <input type="password" placeholder="password" className="input input-bordered" {...register("password")} required />
 
                             </div>
-                        
+
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Log In</button>
                             </div>
