@@ -18,13 +18,15 @@ const Login = () => {
 
     }).then(res => res.json())
     .then( users => {
+        console.log(users);
         let token= users.token
+        let email=users.email
         if (users.message === 'user not valid') {
             return alert('already ')
         }
         else{
             alert('success')
-            localStorage.setItem('house-token',token)
+            localStorage.setItem('house-token',JSON.stringify({ email, token }))
             navigate('/')
         }
     })

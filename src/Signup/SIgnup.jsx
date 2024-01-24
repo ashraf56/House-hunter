@@ -73,9 +73,9 @@ const SIgnup = () => {
                                     <span className="label-text">Role</span>
                                 </label>
                                 <select className="select select-bordered w-full " {...register("role")}>
-                                   
-                                    <option value='House Renter'>House Renter</option>
-                                    <option value='House Owner '>House Owner </option>
+
+                                    <option value='renter'>House Renter</option>
+                                    <option value='owner'>House Owner </option>
                                 </select>
                             </div>
                             <div className="form-control mt-6">
